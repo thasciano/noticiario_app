@@ -40,13 +40,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     Center(child: CircularProgressIndicator())
                   : Container(
                         height: MediaQuery.of(context).size.height,
-                        child: ListView.builder(
-                          
+                        child: RefreshIndicator(
+                          onRefresh: () => controller.callNoticias(),
+                          child: ListView.builder(
                           itemCount: controller.noticias.length,
                           itemBuilder: (_, index){
                             Noticia n = controller.noticias[index];
                             return AutorWidget(n: n);
                           },
+                        ) ,
                         )     
                   );
                 },
